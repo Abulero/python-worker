@@ -19,9 +19,9 @@ class Worker:
         self.queue = Queue()
         self._thread_list = list()
 
-        options = (queue, 0) + options
+        options = (self.queue, 0) + options
         for i in range(psutil.cpu_count()):
-            options = (queue, i) + options[2:]
+            options = (self.queue, i) + options[2:]
             thread = Thread(target=lambda q, arg1: q.put(method(arg1)), args=options)
             thread_progress.append(0)
             self._thread_list.append(thread)
