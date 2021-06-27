@@ -26,6 +26,9 @@ class Worker:
             thread_progress.append(0)
             self._thread_list.append(thread)
 
+    def get_available_threads(self):
+        return psutil.cpu_count()
+
     def start_threads(self):
         for thread in self._thread_list:
             thread.start()
